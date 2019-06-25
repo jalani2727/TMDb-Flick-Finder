@@ -20,8 +20,6 @@ class App extends Component {
       movies:[]
     }
 
-
-    this.performSearch("spiderman")
     }
 
     performSearch(searchTerm) {
