@@ -1,10 +1,18 @@
 .titleBar {
+
   background-color: rgb(100, 13, 13);
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
   color: white;
   padding-left: 16px
   
 }
+.titleBar, h1 {
+  padding-left: 12px;
+}
+
 .searchBar{
   font-size: 24px;
   display: block;
@@ -14,38 +22,14 @@
   padding-left: 16px
 }
 
-
+.movieDisplay {
+  height: 100%;
+  align-items: stretch
+}
 
 .App {
+  padding-top: 12px;
   text-align: center;
+  align-items: stretch;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

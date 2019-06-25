@@ -1,17 +1,27 @@
 import React, { Component } from 'react';
 import './App.css';
-import MovieRow from './components/movieRow'
+
+import {  
+  Col,
+  Container,
+  Row 
+} from 'reactstrap';
+
+import SingleMovie from './components/SingleMovie'
 import $ from 'jquery';
+
 
 
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      movies:[]
+    }
 
 
-    this.performSearch("a")
+    this.performSearch("spiderman")
     }
 
     performSearch(searchTerm) {
@@ -25,15 +35,18 @@ class App extends Component {
           
           const results = searchResults.results
           
-          var movieRows = []
-          results.forEach((movie) => {
-            
-            movie.poster_src = 'https://image.tmdb.org/t/p/w185/'+movie.poster_path
-            const movieRow = <MovieRow key={movie.id}movie = {movie}/>
-            movieRows.push(movieRow)
+          var singleMovies = []
+          results.forEach((item) => {
+            item.poster_src = 'https://image.tmdb.org/t/p/w185/'+item.poster_path
+
+
+            singleMovies.push(item)
           }) 
 
-          this.setState({rows:movieRows})
+
+          this.setState({
+            movies:singleMovies
+          })
         },
         error: (xhr, status, error) => {
           console.log("Failed to fetch data")
@@ -49,29 +62,28 @@ class App extends Component {
     }
   render() {
     return (
-      <div >
+    
+        <Container fluid>
         
-          
-          <table className="titleBar">
-            <tbody>
-              <tr>
-                <td>
-                  <img alt="app icon" width="50" src="https://www.themoviedb.org/assets/2/v4/logos/primary-green-d70eebe18a5eb5b166d5c1ef0796715b8d1a2cbc698f96d311d62f894ae87085.svg"/>
-                </td>
-                <td width= '8' />
-                <td>
-                  <h1>Flick-Finder</h1>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <Row className="titleBar">
+            <img alt="app icon" width="50" src="https://www.themoviedb.org/assets/2/v4/logos/primary-green-d70eebe18a5eb5b166d5c1ef0796715b8d1a2cbc698f96d311d62f894ae87085.svg"/>
+           <h1>Flick-Finder</h1>
+          </Row>
 
-          <input onChange={this.searchChangeHandler.bind(this)} className="searchBar" placeholder="Enter Search Term"/>
-          {this.state.rows}
-  
-          
-      
-      </div>
+          <Row sm="12">
+            <input onChange={this.searchChangeHandler.bind(this)} className="searchBar" placeholder="Search..."/>
+          </Row>
+ 
+          <Row>
+          {this.state.movies.map(movie =>
+            <Col key={movie.id} className="App" xs="6" sm="4">
+            <SingleMovie key={movie.id} movie={movie}/>
+            </Col>
+          )}
+          </Row>
+        
+        </Container>
+    
     );
   }
 }
