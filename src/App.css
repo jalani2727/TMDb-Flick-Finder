@@ -1,5 +1,11 @@
-.titleBar {
+@font-face {
+  font-family:Lato;
+  src: url(./lato/Lato-Bold.ttf);
+}
 
+
+.titleBar {
+  font-family: Lato;
   background-color: rgb(29, 103, 133);
   display: flex;
   align-items: center;
@@ -14,6 +20,7 @@
 }
 
 .searchBar{
+  font-family: Lato;
   font-size: 24px;
   display: block;
   width:99%;
@@ -35,5 +42,7 @@
 
   border: 2px solid rgb(29, 103, 133);
   border-radius: 5px;
+
+  font-family: Lato;
 }
 
