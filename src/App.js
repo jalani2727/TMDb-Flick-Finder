@@ -10,27 +10,8 @@ class App extends Component {
     super(props);
     this.state = {}
 
-    // const movies = [
-    //   {id: 0, poster_src:"lol", title: "lol fake title ", description:"Some whack ass movie."},
-    //   {id: 1, poster_src:"lol", title: "lol fake title again", description:"This movie actually skr8"}
-     
-    // ]
 
-    
-
-    // var movieRows = []
-    // movies.forEach((movie) => {
-    //     console.log(movie.title)
-    //     const movieRow= <MovieRow movie={movie}/>
-    //     movieRows.push(movieRow)
-    //     })
-
-    // this.state = {
-    //   rows: movieRows
-    // }
-
-
-    this.performSearch("Toxic")
+    this.performSearch("a")
     }
 
     performSearch(searchTerm) {
