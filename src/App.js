@@ -42,30 +42,6 @@ class App extends Component {
         }
         )
       })
-      // $.ajax({
-      //   url: urlString,
-      //   success: (searchResults) => {
-      //     console.log("Fetch successful")
-      //     console.log(searchResults)
-      //     const results = searchResults.results
-          
-      //     var singleMovies = []
-      //     results.forEach((item) => {
-      //       item.poster_src = 'https://image.tmdb.org/t/p/w185/'+item.poster_path
-
-
-      //       singleMovies.push(item)
-      //     }) 
-
-
-      //     this.setState({
-      //       movies:singleMovies
-      //     })
-      //   },
-      //   error: (xhr, status, error) => {
-      //     console.log("Failed to fetch data")
-      //   }
-      // })
     }
 
     searchChangeHandler(e){
@@ -74,6 +50,7 @@ class App extends Component {
       const searchTerm = e.target.value
       boundObject.performSearch(searchTerm)
     }
+    
   render() {
     return (
     
