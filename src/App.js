@@ -8,7 +8,9 @@ import {
 } from 'reactstrap';
 
 import SingleMovie from './components/SingleMovie'
-import $ from 'jquery';
+
+import axios from 'axios';
+
 
 
 
@@ -26,30 +28,44 @@ class App extends Component {
       console.log("search performed on MovieDB")
       const urlString = 'https://api.themoviedb.org/3/search/movie?&api_key=f946411f986f514dc8e31d2ae1f5de10&query='+ searchTerm
 
-      $.ajax({
-        url: urlString,
-        success: (searchResults) => {
-          console.log("Fetch successful")
-          
-          const results = searchResults.results
-          
-          var singleMovies = []
-          results.forEach((item) => {
-            item.poster_src = 'https://image.tmdb.org/t/p/w185/'+item.poster_path
-
-
-            singleMovies.push(item)
-          }) 
-
-
-          this.setState({
-            movies:singleMovies
-          })
-        },
-        error: (xhr, status, error) => {
-          console.log("Failed to fetch data")
+      axios.get(urlString).then(res => {
+        const results = res.data.results
+        
+        var singleMovies = []
+        results.forEach((item) => {
+          item.poster_src = 'https://image.tmdb.org/t/p/w185/'+item.poster_path
+          singleMovies.push(item)
+        })
+        
+        this.setState({
+          movies:singleMovies
         }
+        )
       })
+      // $.ajax({
+      //   url: urlString,
+      //   success: (searchResults) => {
+      //     console.log("Fetch successful")
+      //     console.log(searchResults)
+      //     const results = searchResults.results
+          
+      //     var singleMovies = []
+      //     results.forEach((item) => {
+      //       item.poster_src = 'https://image.tmdb.org/t/p/w185/'+item.poster_path
+
+
+      //       singleMovies.push(item)
+      //     }) 
+
+
+      //     this.setState({
+      //       movies:singleMovies
+      //     })
+      //   },
+      //   error: (xhr, status, error) => {
+      //     console.log("Failed to fetch data")
+      //   }
+      // })
     }
 
     searchChangeHandler(e){
